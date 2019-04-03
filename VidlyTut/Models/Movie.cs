@@ -11,4 +11,6 @@ namespace VidlyTut.Models
 
         public string Name { get; set; }
     }
+
+    // /movies/random
 }
