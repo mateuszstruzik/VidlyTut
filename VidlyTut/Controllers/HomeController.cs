@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TemporaryRepository;
+using VidlyTut.Models;
 
 namespace VidlyTut.Controllers
 {
@@ -13,18 +15,32 @@ namespace VidlyTut.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult Index(LogModel logModel)
         {
-            ViewBag.Message = "Your application description page.";
+            TempRepo repo = new TempRepo();
+            var checkUser = repo.GetUser(logModel.UserName, logModel.Password);
 
-            return View();
+            if (checkUser)
+                ViewBag.Status = checkUser;
+            else
+                ViewBag.Status = checkUser;
+
+            return View("Index");
         }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+        //public ActionResult About()
+        //{
+        //    ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
+        //    return View();
+        //}
+
+        //public ActionResult Contact()
+        //{
+        //    ViewBag.Message = "Your contact page.";
+
+        //    return View();
+        //}
     }
 }
